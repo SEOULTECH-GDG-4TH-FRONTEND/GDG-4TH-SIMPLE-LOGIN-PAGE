@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const signup = (username, password1, password2, email) => {
     return axios
-        .post("/api/user/signup", {
+        .post("http://localhost:8080/api/user/signup", {
             username,
             password1,
             password2,
@@ -18,10 +18,16 @@ export const signup = (username, password1, password2, email) => {
 
 export const login = (email, password) => {
     return axios
-        .post("/api/user/login", {
-            email,
-            password,
-        })
+        .post(
+            "http://localhost:8080/api/user/login",
+            {
+                email,
+                password,
+            },
+            {
+                withCredentials: true,
+            }
+        )
         .then((response) => {
             return response.data;
         })
@@ -32,7 +38,7 @@ export const login = (email, password) => {
 
 export const logout = () => {
     return axios
-        .post("/api/user/logout", {
+        .post("http://localhost:8080/api/user/logout", {
             withCredentials: true,
         })
         .then((response) => {
@@ -45,10 +51,15 @@ export const logout = () => {
 
 export const loginTest = () => {
     return axios
-        .post("/api/user/test")
-        .then((response) => {
-            return response.data;
-        })
+        .post("http://localhost:8080/api/user/test")
+        .then(
+            (response) => {
+                return response.data;
+            },
+            {
+                withCredentials: true,
+            }
+        )
         .catch((error) => {
             throw error;
         });
