@@ -38,9 +38,13 @@ export const login = (email, password) => {
 
 export const logout = () => {
     return axios
-        .post("http://localhost:8080/api/user/logout", {
-            withCredentials: true,
-        })
+        .post(
+            "http://localhost:8080/api/user/logout",
+            {},
+            {
+                withCredentials: true,
+            }
+        )
         .then((response) => {
             return response.data;
         })
@@ -51,15 +55,16 @@ export const logout = () => {
 
 export const loginTest = () => {
     return axios
-        .post("http://localhost:8080/api/user/test")
-        .then(
-            (response) => {
-                return response.data;
-            },
+        .post(
+            "http://localhost:8080/api/user/test",
+            {},
             {
                 withCredentials: true,
             }
         )
+        .then((response) => {
+            return response.data;
+        })
         .catch((error) => {
             throw error;
         });
